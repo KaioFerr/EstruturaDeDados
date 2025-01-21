@@ -11,24 +11,23 @@ public class Vetor {
         this.elementos = new int[capacidade];
         this.tamanho = 0;
     }
-//Metodo não muito eficiente
-//    public void adicionarElemento(int elemento){
-//        for (int i = 0; i < this.elementos.length; i++){
-//            if (this.elementos[i] == 0){
-//                this.elementos[i] = elemento;
-//                break;
-//            }
-//        }
-//    }
 
-//    public void adicionarElemento(int elemento) throws Exception{
-//        if (this.tamanho < this.elementos.length){
-//            this.elementos[this.tamanho] = elemento;
-//            this.tamanho++;
-//        }else {
-//            throw new Exception("Vetor com capacidade esgotada");
-//        }
-//    }
+    public int getIndex (int elemento){
+        for (int i = 0; i < this.tamanho; i++){
+            if (this.elementos[i] == elemento){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int search (int position){
+        if (!(position > 0 && position < this.tamanho)){
+            throw new IllegalArgumentException("Posição inválida");
+        }
+        return this.elementos[position];
+    }
+
 
     public boolean adicionarElemento(int elemento) {
         if (this.tamanho < this.elementos.length){
@@ -45,10 +44,12 @@ public class Vetor {
 
     @Override
     public String toString() {
+
         StringBuilder s = new StringBuilder();
+
         s.append("[");
 
-        for(int i = 0; i < this.tamanho-1; i++){
+        for (int i = 0; i < this.tamanho - 1; i++){
             s.append(this.elementos[i]);
             s.append(", ");
         }
